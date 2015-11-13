@@ -1,0 +1,3 @@
+dependencies {
+    compile 'org.gradle.common:a:1.0'
+}

@@ -1,0 +1,12 @@
+allprojects {
+    group = 'org.gradle.app'
+    version = '1.0'
+}
+
+subprojects {
+    apply plugin: 'java'
+    
+    repositories {
+        maven { url "file://$rootProject.projectDir/../repo" }
+    }
+}

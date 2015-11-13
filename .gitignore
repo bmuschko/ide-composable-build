@@ -1,0 +1,11 @@
+.DS_Store
+build
+out
+bin
+*.iml
+*.ipr
+*.iws
+*.settings
+*.project
+.idea
+.gradle
