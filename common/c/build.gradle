@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':a')
+    compile project(':b')
+}
