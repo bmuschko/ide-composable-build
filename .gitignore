@@ -2,10 +2,11 @@
 build
 out
 bin
+repo
 *.iml
 *.ipr
 *.iws
-*.settings
-*.project
+.settings
+.project
 .idea
 .gradle
