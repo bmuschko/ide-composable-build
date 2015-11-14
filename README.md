@@ -26,4 +26,17 @@ IntelliJ does not have a concept of a workspace. However, one can open multiple 
 1. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `common`. The projects should be rendered in the project view as flat hierarchy.
 2. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `web`. The projects should be rendered in the project view as flat hierarchy.
 3. After the import no issues should be reported.
-4. Select the `web` project. From the context menu select "Properties". In the tab "Libraries", remove the dependency on `a-1.0.jar`.
+4. Select the `web` project. From the context menu select "Properties". In the tab "Libraries", the dependency `a-1.0.jar` should be shown as entry in the classpath container.
+
+__At the moment it seems like a classpath container cannot be modified e.g. remove binary dependencies or add source dependencies. It would have to be done outside of the classpath container which we most certainly don't want to do.__
+
+## Replacing a source dependency with binary dependency
+
+### IntelliJ
+
+1.  Import project `common` by selecting "Import Project". Select the `build.gradle` file of in the dialog. In the dialog "Gradle Project Data to Import" deselect `b`. Press OK. The project should contain the modules `a` and `c` but not `b`. The module `c` should report a compilation issues as it cannot find the class from module `b`.
+2. Select the `c` module and "Open Module Settings" from the context menu. Remove the module dependency on `b`.
+
+__At the moment it seems like there's no way to add a binary dependency based on coordinates for a Gradle project. Binary Gradle dependencies aren't even listed in the .iml file.__
+
+### Buildship
