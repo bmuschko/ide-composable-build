@@ -2,7 +2,11 @@
 
 The purpose of this repository is to analyze the user actions to substitute a binary dependency with source dependency or vice versa. The steps required are independent from the underlying build infrastructure. All actions are performed manually to identify the capabilities of the IDE. Two IDEs are analyzed: IDEA IntelliJ and Eclipse/Buildship.
 
-For this experiment we use two multi-project builds: `common` and `web`. The project `common` provides reusable logic into two subprojects: `a` and `b`. Both subprojects produce artifacts that are published to a repository alongside the projects for consumption by `web`. The project `web` consumes the published artifacts of `common` in the subprojects `web` and `webservice`. The dependency on `a` and `b` are specified as binary dependencies. Both multi-project builds, `common` and `web` are decoupled from each other and are buildable independently.
+For this experiment we use two multi-project builds: `common` and `web`.
+
+The project `common` provides reusable logic in three subprojects: `a`, `b` and `c`. The subproject `c` has a source dependency on `a` and `b`. The subprojects `a`, `b` and `c` produce artifacts that are published to a repository alongside the projects. 
+
+The project `web` consumes the published artifacts of `common` in the subprojects `web` and `webservice`. The dependency on `a` and `b` are specified as binary dependencies. Both multi-project builds, `common` and `web` are decoupled from each other and are buildable independently.
 
 For this experiment there are two goals:
 
@@ -20,6 +24,14 @@ IntelliJ does not have a concept of a workspace. However, one can open multiple 
 3. The modules as a whole should be compilable via "Build" > "Rebuild project". Binary dependencies are required to be published to work properly.
 4. Select the `app` module and "Open Module Settings" from the context menu. In the "Modules" tab select the `web` module. The `web` module has a dependency on `org.gradle.common:a:1.0`. To replace this binary dependency with a source dependency press the "+" button and select "Module Dependency...". Select module `a` from the list and remove the binary dependency by selecting it and pressing the "-" button.
 5. To verify, delete the binary repository on local disk. The subsitution can be performed for `b` as well.
+
+#### Before
+
+![IntelliJ before](imgs/idea_binary_to_source_before.png)
+
+#### After
+
+![IntelliJ after](imgs/idea_binary_to_source_after.png)
 
 ### Buildship
 
