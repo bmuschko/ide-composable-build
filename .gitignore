@@ -8,5 +8,6 @@ repo
 *.iws
 .settings
 .project
+.classpath
 .idea
 .gradle
