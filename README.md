@@ -23,7 +23,7 @@ IntelliJ does not have a concept of a workspace. However, one can open multiple 
 2. From the menu bar select "File" > "New" > "Module from existing sources...", point to the `build.gradle` file of `app`. All projects of the multi-project build should be preselected for import. Press OK. The "project view" renders the `app` projects with all it's subprojects alongside the `common` projects.
 3. The modules as a whole should be compilable via "Build" > "Rebuild project". Binary dependencies are required to be published to work properly.
 4. Select the `app` module and "Open Module Settings" from the context menu. In the "Modules" tab select the `web` module. The `web` module has a dependency on `org.gradle.common:a:1.0`. To replace this binary dependency with a source dependency press the "+" button and select "Module Dependency...". Select module `a` from the list and remove the binary dependency by selecting it and pressing the "-" button.
-5. To verify, delete the binary repository on local disk. The subsitution can be performed for `b` as well.
+5. To verify, delete the binary repository on local disk. The subsitution could be performed for `b` as well.
 
 #### Before
 
@@ -48,6 +48,10 @@ __At the moment it seems like a classpath container cannot be modified e.g. remo
 
 1.  Import project `common` by selecting "Import Project". Select the `build.gradle` file of in the dialog. In the dialog "Gradle Project Data to Import" deselect `b`. Press OK. The project should contain the modules `a` and `c` but not `b`. The module `c` should report a compilation issues as it cannot find the class from module `b`.
 2. Select the `c` module and "Open Module Settings" from the context menu. Remove the module dependency on `b`.
+
+### Selecting a subset of projects
+
+![IntelliJ before](imgs/idea_subset_projects.png)
 
 __At the moment it seems like there's no way to add a binary dependency based on coordinates for a Gradle project. Binary Gradle dependencies aren't even listed in the .iml file.__
 
