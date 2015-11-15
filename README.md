@@ -49,7 +49,7 @@ __At the moment it seems like a classpath container cannot be modified e.g. remo
 1.  Import project `common` by selecting "Import Project". Select the `build.gradle` file of in the dialog. In the dialog "Gradle Project Data to Import" deselect `b`. Press OK. The project should contain the modules `a` and `c` but not `b`. The module `c` should report a compilation issues as it cannot find the class from module `b`.
 2. Select the `c` module and "Open Module Settings" from the context menu. Remove the module dependency on `b`.
 
-### Selecting a subset of projects
+#### Selecting a subset of projects
 
 ![IntelliJ subset of projects](imgs/idea_subset_projects.png)
 
@@ -60,7 +60,7 @@ __At the moment it seems like there's no way to add a binary dependency based on
 1. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `common`. The projects should be rendered in the project view as flat hierarchy.
 2. In the package explorer select project `b`, open the context dialog and select the option "Close Project". The module `c` should report a compilation issues as it cannot find the class from module `b`.
 
-### Selecting a subset of projects
+#### Selecting a subset of projects
 
 ![Eclipse subset of projects](imgs/eclipse_subset_projects.png)
 
