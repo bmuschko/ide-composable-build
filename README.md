@@ -35,8 +35,8 @@ IntelliJ does not have a concept of a workspace. However, one can open multiple 
 
 ### Buildship
 
-1. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `common`. The projects should be rendered in the project view as flat hierarchy.
-2. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `web`. The projects should be rendered in the project view as flat hierarchy.
+1. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `common`. The projects should be rendered in the package explorer as flat hierarchy.
+2. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `web`. The projects should be rendered in the package explorer as flat hierarchy.
 3. After the import no issues should be reported.
 4. Select the `web` project. From the context menu select "Properties". In the tab "Libraries", the dependency `a-1.0.jar` should be shown as entry in the classpath container.
 
@@ -51,8 +51,17 @@ __At the moment it seems like a classpath container cannot be modified e.g. remo
 
 ### Selecting a subset of projects
 
-![IntelliJ before](imgs/idea_subset_projects.png)
+![IntelliJ subset of projects](imgs/idea_subset_projects.png)
 
 __At the moment it seems like there's no way to add a binary dependency based on coordinates for a Gradle project. Binary Gradle dependencies aren't even listed in the .iml file.__
 
 ### Buildship
+
+1. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `common`. The projects should be rendered in the project view as flat hierarchy.
+2. In the package explorer select project `b`, open the context dialog and select the option "Close Project". The module `c` should report a compilation issues as it cannot find the class from module `b`.
+
+### Selecting a subset of projects
+
+![Eclipse subset of projects](imgs/eclipse_subset_projects.png)
+
+__At the moment it seems like a classpath container cannot be modified e.g. remove source dependencies or add binary dependencies. It would have to be done outside of the classpath container which we most certainly don't want to do.__
