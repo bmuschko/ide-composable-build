@@ -33,7 +33,7 @@ The `common` projects have been closed which means that `app` has to rely on the
 
 #### After
 
-The `common` project have been opened (from the context dialog of a project) which means that `app` can directly use the source dependency.
+The `common` projects have been opened (from the context dialog of a project) which means that `app` can directly use the source dependency.
 
 ![Eclipse after](imgs/eclipse_source_dependency.png)
 
