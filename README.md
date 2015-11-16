@@ -23,7 +23,7 @@ For this experiment there are two goals:
 2. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `web`. The projects should be rendered in the package explorer as flat hierarchy.
 3. After the import no issues should be reported. The subprojects of `web` depend on the published artifacts. To verify, select the `web` project. From the context menu select "Properties". In the tab "Libraries", the binary dependency `a-1.0.jar` should be shown as entry in the classpath container.
 
-__At the moment it seems like a classpath container cannot be modified e.g. remove binary dependencies and add source dependencies. Changing the classpath container has to be implemented in Buildship. The following images use a SNAPSHOT version of Buildship.____
+__At the moment it seems like a classpath container cannot be modified e.g. remove binary dependencies and add source dependencies. Changing the classpath container has to be implemented in Buildship. The following images use a SNAPSHOT version of Buildship.__
 
 #### Before
 
