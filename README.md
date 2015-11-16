@@ -15,6 +15,28 @@ For this experiment there are two goals:
 
 ## Replacing a binary dependency with source dependency
 
+### Buildship
+
+#### Setup
+
+1. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `common`. The projects should be rendered in the package explorer as flat hierarchy. For each imported project open the context dialog and select "Close project".
+2. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `web`. The projects should be rendered in the package explorer as flat hierarchy.
+3. After the import no issues should be reported. The subprojects of `web` depend on the published artifacts. To verify, select the `web` project. From the context menu select "Properties". In the tab "Libraries", the binary dependency `a-1.0.jar` should be shown as entry in the classpath container.
+
+__At the moment it seems like a classpath container cannot be modified e.g. remove binary dependencies and add source dependencies. Changing the classpath container has to be implemented in Buildship.__
+
+#### Before
+
+The `common` projects have been closed which means that `app` has to rely on the published artifacts.
+
+![Eclipse before](imgs/eclipse_binary_dependency.png)
+
+#### After
+
+The `common` project have been opened (from the context dialog of a project) which means that `app` can directly use the source dependency.
+
+![Eclipse after](imgs/eclipse_source_dependency.png)
+
 ### IntelliJ
 
 IntelliJ does not have a concept of a workspace. However, one can open multiple projects in the same Window of IntelliJ.
@@ -33,47 +55,39 @@ IntelliJ does not have a concept of a workspace. However, one can open multiple 
 
 ![IntelliJ after](imgs/idea_binary_to_source_after.png)
 
+## Replacing a source dependency with binary dependency
+
 ### Buildship
+
+#### Setup
 
 1. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `common`. The projects should be rendered in the package explorer as flat hierarchy.
 2. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `web`. The projects should be rendered in the package explorer as flat hierarchy.
-3. After the import no issues should be reported.
-4. Select the `web` project. From the context menu select "Properties". In the tab "Libraries", the dependency `a-1.0.jar` should be shown as entry in the classpath container.
+3. After the import no issues should be reported. The subprojects of `web` depend on the published artifacts. To verify, select the `web` project. From the context menu select "Properties". In the tab "Libraries", the source dependency `a` should be shown as entry in the classpath container.
 
 __At the moment it seems like a classpath container cannot be modified e.g. remove binary dependencies and add source dependencies. Changing the classpath container has to be implemented in Buildship.__
 
 #### Before
 
-The following image shows both multi-project builds imported into Buildship. The `common` projects have been closed which means that `app` has to rely on the published artifacts.
+The `common` projects have been opened which means that `app` can directly use the source dependency.
 
-![Eclipse before](imgs/eclipse_binary_to_source_before.png)
+![Eclipse before](imgs/eclipse_source_dependency.png)
 
 #### After
 
-The following image shows both multi-project builds imported into Buildship. The `common` project have been opened which means that `app` can directly use the source dependency.
+The `common` projects have been closed which means that `app` has to rely on the published artifacts.
 
-![Eclipse after](imgs/eclipse_binary_to_source_after.png)
+![Eclipse before](imgs/eclipse_binary_dependency.png)
 
-## Replacing a source dependency with binary dependency
+#### Selecting a subset of projects
 
 ### IntelliJ
+
+#### Setup
 
 1.  Import project `common` by selecting "Import Project". Select the `build.gradle` file of in the dialog. In the dialog "Gradle Project Data to Import" deselect `b`. Press OK. The project should contain the modules `a` and `c` but not `b`. The module `c` should report a compilation issues as it cannot find the class from module `b`.
 2. Select the `c` module and "Open Module Settings" from the context menu. Remove the module dependency on `b`.
 
-#### Selecting a subset of projects
-
 ![IntelliJ subset of projects](imgs/idea_subset_projects.png)
 
 __At the moment it seems like there's no way to add a binary dependency based on coordinates for a Gradle project. Binary Gradle dependencies aren't even listed in the .iml file.__
-
-### Buildship
-
-1. From the menu bar select "File" > "Import...". Select "Gradle Project". Import project `common`. The projects should be rendered in the project view as flat hierarchy.
-2. In the package explorer select project `b`, open the context dialog and select the option "Close Project". The module `c` should report a compilation issues as it cannot find the class from module `b`.
-
-#### Selecting a subset of projects
-
-![Eclipse subset of projects](imgs/eclipse_subset_projects.png)
-
-__At the moment it seems like a classpath container cannot be modified e.g. remove source dependencies and add binary dependencies. Changing the classpath container has to be implemented in Buildship.__
